@@ -6,7 +6,7 @@ import { Faq } from "@/components/Faq";
 import { ProfileChecklist, UploadDoc } from "@/components/Illustrations";
 import { Img } from "@/components/Img";
 import { Split } from "@/components/Split";
-import { COMPANY, DELIVERY_TEAM, FAQ, HIRING_SCOPE, LEADERS, MODELS, PROCESS, SERVICES } from "@/lib/hirepulse";
+import { COMPANY, DELIVERY_TEAM, FAQ, HIRING_SCOPE, LEADERS, MODELS, PLACEMENT_POSTERS, PROCESS, SERVICES } from "@/lib/hirepulse";
 
 const d = (ms: number) => ({ "--d": `${ms}ms` }) as React.CSSProperties;
 
@@ -208,7 +208,7 @@ export default function HomePage() {
               Desk and remote recruiters, trainers and a dedicated academic and retention support team.
             </p>
           </div>
-          <div className="testimonials">
+          <div className="testimonials testimonials--leaders">
             {LEADERS.map((l) => (
               <figure className="testimonial leader-card" key={l.name} data-reveal="group">
                 <div className="media">
@@ -257,6 +257,80 @@ export default function HomePage() {
           <p className="steps-foot" data-reveal="fade">
             Role clarity / Candidate communication / Consistent follow-through
           </p>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <div className="sec-head sec-head--center">
+            <span className="eyebrow">Success stories</span>
+            <Split className="h2" text="Real Candidates. Real Placements." />
+            <p className="t-r" data-reveal="fade">
+              Freshers and experienced professionals we&apos;ve recently placed — from sales officers to BDEs with Axis Bank.
+            </p>
+          </div>
+          <div className="placements">
+            {[PLACEMENT_POSTERS.slice(0, 2), PLACEMENT_POSTERS.slice(2)].map((row, i) => (
+              <div className="placements__row" key={i}>
+                {row.map((p) => (
+                  <a
+                    key={p.file}
+                    className="placement"
+                    href={`/brand/${p.file}-${p.w}.webp`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ "--ar": p.w / p.h } as React.CSSProperties}
+                    data-reveal="group"
+                  >
+                    <img
+                      src={`/brand/${p.file}-960.webp`}
+                      srcSet={p.widths.map((w) => `/brand/${p.file}-${w}.webp ${w}w`).join(", ")}
+                      sizes="(min-width: 1200px) 640px, (min-width: 810px) 50vw, calc(100vw - 32px)"
+                      width={p.w}
+                      height={p.h}
+                      alt={p.alt}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <span className="placement__zoom" aria-hidden="true">View full size</span>
+                  </a>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section bg-stone">
+        <div className="container jobseeker">
+          <div className="jobseeker__copy">
+            <span className="eyebrow">For jobseekers</span>
+            <Split className="h2" text="Empowering Jobseekers to Find the Right Opportunities" />
+            <p className="t-r" data-reveal="fade">
+              Apki job, hmari zimmedari. Register with Hirepulse and we&apos;ll match your skills and goals with roles that fit — with interview preparation and support until you join.
+            </p>
+            <div className="btn-row" data-reveal="fade">
+              <Button href="mailto:careers@hirepulsesolutions.com">Register Now</Button>
+              <Button href="/hiring-scope" variant="secondary">
+                See Open Roles
+              </Button>
+            </div>
+            <p className="t-s jobseeker__mail" data-reveal="fade">
+              Email your CV to <a href="mailto:careers@hirepulsesolutions.com">careers@hirepulsesolutions.com</a>
+            </p>
+          </div>
+          <div className="jobseeker__poster" data-reveal="fade">
+            <img
+              src="/brand/jobseeker-poster-1217.webp"
+              srcSet="/brand/jobseeker-poster-640.webp 640w, /brand/jobseeker-poster-1217.webp 1217w"
+              sizes="(min-width: 1200px) 520px, (min-width: 810px) 45vw, calc(100vw - 32px)"
+              width={1217}
+              height={1292}
+              alt="Hirepulse poster: a struggling jobseeker truck beside a steady Hirepulse truck — Empowering Jobseekers to Find the Right Opportunities. Register now at careers@hirepulsesolutions.com"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
         </div>
       </section>
 

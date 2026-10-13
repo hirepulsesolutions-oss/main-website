@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
+import { supabase } from "@/lib/supabase";
 
-// Mock contact endpoint for the demo replica: validates the input and filters obvious spam like a
-// real endpoint would, then answers success without storing or forwarding anything.
+// Contact endpoint: validates the input, filters obvious spam, then stores the message in the
+// Supabase table public.contact_submissions.
 
 const LIMITS = { name: 120, phone: 40, subject: 200, message: 4000 } as const;
 const recent = new Map<string, number[]>();
@@ -26,7 +27,7 @@ export async function POST(req: Request) {
 
   // Bots fill the hidden field or submit instantly; answer quietly.
   if (clean(body.website, 200) || Number(body.elapsed) < 2500) {
-    return NextResponse.json({ ok: true, mock: true });
+    return NextResponse.json({ ok: true });
   }
 
   const name = clean(body.name, LIMITS.name);
@@ -45,7 +46,18 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Too many messages. Please try again in a few minutes." }, { status: 429 });
   }
 
-  // Simulate a short round trip; nothing is stored or sent.
-  await new Promise((r) => setTimeout(r, 600));
-  return NextResponse.json({ ok: true, mock: true });
+  const { error } = await supabase().from("contact_submissions").insert({
+    name,
+    phone: phone || null,
+    subject,
+    message,
+    source_page: req.headers.get("referer")?.slice(0, 500) ?? null,
+    ip_address: /^[\d.:a-fA-F]+$/.test(ip) ? ip : null,
+    user_agent: req.headers.get("user-agent")?.slice(0, 500) ?? null,
+  });
+  if (error) {
+    console.error("contact insert failed", error);
+    return NextResponse.json({ error: "Your message could not be sent. Please try again later." }, { status: 500 });
+  }
+  return NextResponse.json({ ok: true });
 }

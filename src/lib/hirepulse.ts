@@ -154,6 +154,8 @@ export const LEADERS = [
   { name: "Mahendra Chauhan", role: "Founder & CEO", photo: "/brand/mahendra-chauhan.webp", w: 541, h: 607 },
   // Spelling follows the company profile ("Mihsra"); confirm with Hirepulse.
   { name: "Jinendra Mihsra", role: "Co-founder & COO", photo: "/brand/jinendra-mihsra.webp", w: 507, h: 475 },
+  // TODO: replace placeholder name with the director's full name.
+  { name: "Director", role: "Director Talent Acquisition", photo: "/brand/director-talent-acquisition.webp", w: 413, h: 531 },
 ];
 
 export const DELIVERY_TEAM = [
@@ -233,4 +235,12 @@ export const FAQ = [
       },
     ],
   },
+];
+
+// Placement announcement posters (public/brand/<file>-<width>.webp).
+export const PLACEMENT_POSTERS = [
+  { file: "placements-01", w: 1254, h: 1254, widths: [640, 960, 1254], alt: "Another successful placement: Shikha Rathore, Mahipal Singh Rajput and Laxman Chouhan as Sales Officers, and Sunil Kodaru as ASM" },
+  { file: "placements-02", w: 1440, h: 1440, widths: [640, 960, 1440], alt: "Congratulations on your new journey: seven candidates placed as BDEs, Tele Sales Executive, ASM and RM across Gujarat, Delhi, Madhya Pradesh, Hyderabad and Telangana" },
+  { file: "placements-axis-bank", w: 1440, h: 960, widths: [640, 960, 1440], alt: "Six candidates placed as BDEs with Axis Bank in Indore, Rewa, Malhar and Bhopal" },
+  { file: "placements-bdo", w: 1402, h: 1122, widths: [640, 960, 1402], alt: "Welcoming new Business Development Officers Prachi Sharma (Dhar branch) and Nandini Bhawsar (Indore branch)" },
 ];

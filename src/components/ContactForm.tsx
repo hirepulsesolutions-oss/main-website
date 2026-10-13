@@ -24,11 +24,7 @@ export function ContactForm({ id = "contact" }: { id?: string }) {
       const body = (await res.json().catch(() => ({}))) as { error?: string };
       if (!res.ok) throw new Error(body.error || "Your message could not be sent. Please try again later.");
       form.reset();
-      // Mock endpoint (demo replica): be clear that nothing was actually delivered.
-      setState({
-        kind: "sent",
-        message: "Thanks! This form isn't connected to an inbox yet, so please also email info@hirepulsesolutions.com.",
-      });
+      setState({ kind: "sent", message: "Thanks! Your message has been received. We'll get back to you soon." });
     } catch (err) {
       setState({ kind: "error", message: err instanceof Error ? err.message : "Your message could not be sent." });
     }
