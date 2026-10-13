@@ -154,8 +154,7 @@ export const LEADERS = [
   { name: "Mahendra Chauhan", role: "Founder & CEO", photo: "/brand/mahendra-chauhan.webp", w: 541, h: 607 },
   // Spelling follows the company profile ("Mihsra"); confirm with Hirepulse.
   { name: "Jinendra Mihsra", role: "Co-founder & COO", photo: "/brand/jinendra-mihsra.webp", w: 507, h: 475 },
-  // TODO: replace placeholder name with the director's full name.
-  { name: "Director", role: "Director Talent Acquisition", photo: "/brand/director-talent-acquisition.webp", w: 413, h: 531 },
+  { name: "Pinal Jingar", role: "Director Talent Acquisition", photo: "/brand/director-talent-acquisition.webp", w: 413, h: 531 },
 ];
 
 export const DELIVERY_TEAM = [
