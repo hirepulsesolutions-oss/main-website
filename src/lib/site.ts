@@ -2,10 +2,13 @@ import { COMPANY } from "./hirepulse";
 
 export const SITE = {
   name: COMPANY.name,
-  url: process.env.NEXT_PUBLIC_SITE_URL || "https://verixa-replica.vercel.app",
+  url: (process.env.NEXT_PUBLIC_SITE_URL || COMPANY.websiteUrl).replace(/\/$/, ""),
   description:
     "Hirepulse Solutions Pvt. Ltd. is a recruitment and staffing partner connecting fresh talent and experienced professionals with opportunities across IT and non-IT sectors in India.",
 };
+
+/** True when search engines may index the site (set NEXT_PUBLIC_ALLOW_INDEXING=true on the live domain). */
+export const ALLOW_INDEXING = process.env.NEXT_PUBLIC_ALLOW_INDEXING === "true";
 
 export const MAIN_NAV = [
   { href: "/", label: "Home" },
@@ -22,6 +25,7 @@ export const FOOTER = [
       { href: "/about-us", label: "About Us" },
       { href: "/service", label: "Services" },
       { href: "/hiring-scope", label: "Hiring Scope" },
+      { href: "/recruitment-agency-ahmedabad", label: "Recruitment in Ahmedabad" },
       { href: "/contact", label: "Contact" },
     ],
   },

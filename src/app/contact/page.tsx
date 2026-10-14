@@ -1,16 +1,21 @@
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbLd, pageMeta } from "@/lib/seo";
 import { ContactCta } from "@/components/ContactCta";
 import { COMPANY } from "@/lib/hirepulse";
 import { svg } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Contact",
-  description: "Share the roles, locations and hiring priorities. Email info@hirepulsesolutions.com or visit our Ahmedabad office.",
-};
+export const metadata: Metadata = pageMeta({
+  title: "Contact a Recruitment Agency in Ahmedabad",
+  description:
+    "Contact Hirepulse Solutions for IT and non-IT hiring. Email info@hirepulsesolutions.com or visit our office at Sapath Complex, Bodakdev, Ahmedabad, Gujarat 380015.",
+  path: "/contact",
+});
 
 export default function ContactPage() {
   return (
     <>
+      <JsonLd data={[breadcrumbLd([{ name: "Contact", path: "/contact" }])]} />
       <section className="contact-page">
         <div className="container">
           <div className="contact-intro load-fade">

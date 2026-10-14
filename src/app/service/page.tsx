@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbLd, pageMeta, servicesLd } from "@/lib/seo";
 import { ContactCta } from "@/components/ContactCta";
 import { Faq } from "@/components/Faq";
 import { Img } from "@/components/Img";
@@ -6,10 +8,12 @@ import { PageHero } from "@/components/PageHero";
 import { Split } from "@/components/Split";
 import { DELIVERY_BRIEF, FAQ, MODELS, PROCESS, SERVICES } from "@/lib/hirepulse";
 
-export const metadata: Metadata = {
-  title: "Services",
-  description: "Lateral recruitment, campus & fresher hiring, bulk & location hiring, Hire-Train-Deploy, joining & onboarding, and academic & retention support.",
-};
+export const metadata: Metadata = pageMeta({
+  title: "Recruitment Services – Lateral, Campus, Bulk Hiring & Hire-Train-Deploy",
+  description:
+    "Recruitment services in India: lateral hiring, campus and fresher hiring, bulk and multi-location hiring, Hire-Train-Deploy, joining and onboarding, and retention support.",
+  path: "/service",
+});
 
 const IMAGES: Record<string, [string, string]> = {
   "lateral-recruitment": ["tclnoamhdm54wufyd0ngqhgyjka", "Professional reviewing documents"],
@@ -23,6 +27,7 @@ const IMAGES: Record<string, [string, string]> = {
 export default function ServicePage() {
   return (
     <>
+      <JsonLd data={[breadcrumbLd([{ name: "Services", path: "/service" }]), servicesLd()]} />
       <PageHero
         title="Recruitment, with support at every step."
         text="A connected set of services for new teams, growing operations and experienced hiring needs."
