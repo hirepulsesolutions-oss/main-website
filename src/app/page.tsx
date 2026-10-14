@@ -1,4 +1,7 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+import { JsonLd } from "@/components/JsonLd";
+import { faqLd, pageMeta } from "@/lib/seo";
 import { Button } from "@/components/Button";
 import { PathwayCard, PurposeCard, ServiceCard, SourcingCard } from "@/components/Cards";
 import { ContactCta } from "@/components/ContactCta";
@@ -10,9 +13,17 @@ import { COMPANY, DELIVERY_TEAM, FAQ, HIRING_SCOPE, LEADERS, MODELS, PLACEMENT_P
 
 const d = (ms: number) => ({ "--d": `${ms}ms` }) as React.CSSProperties;
 
+export const metadata: Metadata = pageMeta({
+  title: "Hirepulse Solutions – Recruitment & Staffing Agency in India | IT & Non-IT Hiring",
+  description:
+    "Hirepulse Solutions is an Ahmedabad-based recruitment and staffing agency for IT and non-IT hiring across India: campus and fresher hiring, lateral recruitment, bulk hiring and Hire-Train-Deploy.",
+  path: "/",
+});
+
 export default function HomePage() {
   return (
     <div className="bg-white">
+      <JsonLd data={faqLd()} />
       <section className="home-hero">
         <div className="container home-hero__intro">
           <span className="pill load-fade" style={d(0)}>

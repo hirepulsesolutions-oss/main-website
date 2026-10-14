@@ -4,7 +4,9 @@ import { Analytics } from "@vercel/analytics/next";
 import { Effects } from "@/components/Effects";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
-import { SITE } from "@/lib/site";
+import { JsonLd } from "@/components/JsonLd";
+import { organizationLd, websiteLd } from "@/lib/seo";
+import { ALLOW_INDEXING, SITE } from "@/lib/site";
 import "./globals.css";
 
 const interDisplay = localFont({
@@ -18,21 +20,30 @@ const interDisplay = localFont({
   fallback: ["system-ui", "-apple-system", "Segoe UI", "Arial", "sans-serif"],
 });
 
-const TITLE = "Hirepulse Solutions – Recruitment & Staffing Across IT and Non-IT";
+const TITLE = "Hirepulse Solutions – Recruitment & Staffing Agency in India | IT & Non-IT Hiring";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: { default: TITLE, template: "%s – Hirepulse Solutions" },
   description: SITE.description,
   // Stays out of search results until the site moves to its own domain (set NEXT_PUBLIC_ALLOW_INDEXING=true).
-  robots: process.env.NEXT_PUBLIC_ALLOW_INDEXING === "true" ? { index: true, follow: true } : { index: false, follow: false },
+  robots: ALLOW_INDEXING
+    ? { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 } }
+    : { index: false, follow: false },
+  alternates: { canonical: "/" },
+  applicationName: "Hirepulse Solutions",
+  category: "Recruitment and staffing",
+  formatDetection: { telephone: false },
   openGraph: {
     type: "website",
     siteName: "Hirepulse Solutions",
+    locale: "en_IN",
+    url: "/",
     title: TITLE,
     description: SITE.description,
     images: [{ url: "/brand/og-image.jpg", width: 1200, height: 630, alt: "Hirepulse Solutions – Apki Job Hmari Zimmedari" }],
   },
+  twitter: { card: "summary_large_image", title: TITLE, description: SITE.description, images: ["/brand/og-image.jpg"] },
   icons: { icon: "/favicon.svg" },
 };
 
@@ -48,9 +59,10 @@ const FX_BOOT = `(function(){try{if(matchMedia('(prefers-reduced-motion: reduce)
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={interDisplay.variable} suppressHydrationWarning>
+    <html lang="en-IN" className={interDisplay.variable} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: FX_BOOT }} />
+        <JsonLd data={[organizationLd(), websiteLd()]} />
       </head>
       <body>
         <a className="skip-link" href="#main">

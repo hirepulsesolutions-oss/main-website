@@ -1,13 +1,17 @@
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbLd, pageMeta } from "@/lib/seo";
 import { ContactCta } from "@/components/ContactCta";
 import { PageHero } from "@/components/PageHero";
 import { Split } from "@/components/Split";
 import { HIRING_SCOPE, REACH } from "@/lib/hirepulse";
 
-export const metadata: Metadata = {
-  title: "Hiring Scope & Reach",
-  description: "IT and non-IT recruitment across representative sectors, with 50+ college tie-ups and regional sourcing across India.",
-};
+export const metadata: Metadata = pageMeta({
+  title: "IT & Non-IT Hiring Across India – Sectors and Regions",
+  description:
+    "IT and non-IT recruitment across technology, manufacturing, BFSI, retail, healthcare, logistics and more, with 50+ college tie-ups and regional sourcing in tier-1, tier-2 and rural India.",
+  path: "/hiring-scope",
+});
 
 export default function HiringScopePage() {
   const cards = [
@@ -16,6 +20,7 @@ export default function HiringScopePage() {
   ];
   return (
     <>
+      <JsonLd data={[breadcrumbLd([{ name: "Hiring Scope", path: "/hiring-scope" }])]} />
       <PageHero
         title={"One partner. A\u00a0broad talent lens."}
         text="Recruitment and staffing conversations across technology, business functions and operational roles."

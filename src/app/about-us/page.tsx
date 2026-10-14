@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbLd, pageMeta } from "@/lib/seo";
 import { Button } from "@/components/Button";
 import { ContactCta } from "@/components/ContactCta";
 import { Counter } from "@/components/Counter";
@@ -6,16 +8,19 @@ import { Img } from "@/components/Img";
 import { Split } from "@/components/Split";
 import { DELIVERY_TEAM, KEY_STATS, LEADERS, STRENGTHS, WHO_WE_ARE } from "@/lib/hirepulse";
 
-export const metadata: Metadata = {
-  title: "About Us",
-  description: WHO_WE_ARE.lead,
-};
+export const metadata: Metadata = pageMeta({
+  title: "About Us – Recruitment & Staffing Partner in Ahmedabad",
+  description:
+    "Meet Hirepulse Solutions: an Ahmedabad-based recruitment and staffing partner with 10+ years of hiring and training expertise, 50+ college tie-ups and branches in Mumbai, Delhi and Hyderabad.",
+  path: "/about-us",
+});
 
 const d = (ms: number) => ({ "--d": `${ms}ms` }) as React.CSSProperties;
 
 export default function AboutPage() {
   return (
     <>
+      <JsonLd data={[breadcrumbLd([{ name: "About Us", path: "/about-us" }])]} />
       <section className="hero-card about-hero">
         <div className="container">
           <div className="lead">
