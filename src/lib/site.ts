@@ -2,13 +2,15 @@ import { COMPANY } from "./hirepulse";
 
 export const SITE = {
   name: COMPANY.name,
-  url: (process.env.NEXT_PUBLIC_SITE_URL || COMPANY.websiteUrl).replace(/\/$/, ""),
+  // The www address the live site is served from (the bare domain redirects to it). Fixed in code, not read
+  // from env, so canonical URLs, the sitemap and structured data always point at the real pages.
+  url: COMPANY.websiteUrl,
   description:
     "Hirepulse Solutions Pvt. Ltd. is a recruitment and staffing partner connecting fresh talent and experienced professionals with opportunities across IT and non-IT sectors in India.",
 };
 
-/** True when search engines may index the site (set NEXT_PUBLIC_ALLOW_INDEXING=true on the live domain). */
-export const ALLOW_INDEXING = process.env.NEXT_PUBLIC_ALLOW_INDEXING === "true";
+/** Search engines may index every build except Vercel preview deployments; no env setup needed. */
+export const ALLOW_INDEXING = process.env.VERCEL_ENV !== "preview";
 
 export const MAIN_NAV = [
   { href: "/", label: "Home" },

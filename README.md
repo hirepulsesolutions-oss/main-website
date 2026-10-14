@@ -39,7 +39,8 @@ image; replace it with the original vector file when available.
 - **Contact form**: mock. `/api/contact` validates input and drops spam, but stores nothing; the
   thank-you message asks people to email info@hirepulsesolutions.com. Wire it to an inbox or CRM
   before relying on it.
-- **Search engines**: pages are `noindex` until `NEXT_PUBLIC_ALLOW_INDEXING=true` is set (do this once
-  the site is on its own domain, and set `NEXT_PUBLIC_SITE_URL` to that domain).
+- **Search engines**: indexing is on for every build except Vercel preview deployments, and canonical
+  URLs, the sitemap and structured data always use `https://www.hirepulsesolutions.com` (set in
+  `src/lib/site.ts`). No environment variables are needed for SEO.
 - Motion follows the original template: word-by-word heading reveals, fade-up blocks, hiding header,
   card hovers, smooth wheel scrolling; all respect `prefers-reduced-motion`.

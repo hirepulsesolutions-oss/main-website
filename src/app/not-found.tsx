@@ -2,7 +2,11 @@ import type { Metadata } from "next";
 import { Button } from "@/components/Button";
 import { Split } from "@/components/Split";
 
-export const metadata: Metadata = { title: { absolute: "Page Not Found – Verixa" } };
+export const metadata: Metadata = {
+  title: { absolute: "Page Not Found – Hirepulse Solutions" },
+  robots: { index: false, follow: true },
+  alternates: { canonical: null },
+};
 
 export default function NotFound() {
   return (
